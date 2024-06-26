@@ -25,15 +25,6 @@
         android:textAlignment="center" />
 
     <Button
-        android:id="@+id/letBattery"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:text="@string/give_battery"
-        android:textAlignment="center" />
-
-    <Button
         android:id="@+id/letAutostart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

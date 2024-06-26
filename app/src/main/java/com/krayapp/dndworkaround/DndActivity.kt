@@ -24,7 +24,6 @@ class DndActivity : AppCompatActivity() {
         notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         vb.letDnd.setOnClickListener { openDndSettings() }
-        vb.letBattery.setOnClickListener { openAppSettings() }
         vb.letAutostart.setOnClickListener { openAutostart() }
     }
 
@@ -42,12 +41,5 @@ class DndActivity : AppCompatActivity() {
                 )
             )
         )
-    }
-
-    private fun openAppSettings() {
-        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-        val uri = Uri.fromParts("package", packageName, null)
-        intent.setData(uri)
-        startActivity(intent)
     }
 }
