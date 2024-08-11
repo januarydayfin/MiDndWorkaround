@@ -3,4 +3,14 @@
     <string name="give_dnd">Выдать права на ДНД</string>
     <string name="give_battery">Выдать права на энергосбережение</string>
     <string name="enable_autostart">Включить автостарт</string>
+    <string name="no_xiaomi">Это не Xiaomi</string>
+    <string name="let_permission">Выдать права</string>
+    <string name="title">Xiaomi/Redmi DND Fixer</string>
+    <string name="about">About</string>
+    <string name="close">Закрыть</string>
+    <!-- modes-->
+    <string name="off">Выключено</string>
+    <string name="chosen_contacts">Избранные контакты</string>
+    <string name="silent">Тихий режим</string>
+    <string name="vibro">Вибрация</string>
 </resources>

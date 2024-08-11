@@ -1,36 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black"
-    android:gravity="center"
+    android:background="@color/md_theme_surface"
     android:orientation="vertical"
-    android:paddingHorizontal="16dp">
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="?android:actionBarSize">
 
-
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginBottom="16dp"
-        android:src="@drawable/moon" />
-
-    <Button
-        android:id="@+id/letDnd"
+    <TextView
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:text="@string/give_dnd"
-        android:textAlignment="center" />
+        android:text="@string/title"
+        android:textAlignment="center"
+        android:layout_marginTop="24dp"
+        android:textAppearance="@style/HeadlineLarge"
+        android:textColor="@color/md_theme_onSurface"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/letAutostart"
+        android:id="@+id/letPermission"
+        style="@style/ThemeOverlay.Material3.Button.TonalButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:text="@string/enable_autostart"
-        android:textAlignment="center" />
+        android:text="@string/let_permission"
+        app:layout_constraintBottom_toTopOf="@+id/radioGroup"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        tools:layout_editor_absoluteX="16dp" />
 
-</LinearLayout>
+
+    <com.google.android.material.materialswitch.MaterialSwitch
+        android:id="@+id/favoritesContactsAvailable"
+        android:layout_width="match_parent"
+        android:textAppearance="@style/BodyMedium"
+        android:layout_height="wrap_content"
+        android:text="@string/chosen_contacts"
+        app:layout_constraintBottom_toTopOf="@+id/radioGroup"
+        app:layout_constraintTop_toBottomOf="@+id/letPermission"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="16dp">
+
+        <RadioButton
+            android:textAppearance="@style/BodyMedium"
+            android:id="@+id/off"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/off" />
+
+        <RadioButton
+            android:textAppearance="@style/BodyMedium"
+            android:id="@+id/silent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/silent" />
+
+        <RadioButton
+            android:textAppearance="@style/BodyMedium"
+            android:id="@+id/vibro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/vibro" />
+    </RadioGroup>
+
+
+    <Button
+        android:id="@+id/aboutApp"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/about"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

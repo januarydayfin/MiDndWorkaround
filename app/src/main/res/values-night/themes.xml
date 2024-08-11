@@ -1,6 +1,6 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.Material3.Light.NoActionBar">
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.Material3.Dark.NoActionBar">
         <item name="colorPrimary">@color/md_theme_primary</item>
         <item name="colorOnPrimary">@color/md_theme_onPrimary</item>
         <item name="colorPrimaryContainer">@color/md_theme_primaryContainer</item>
@@ -48,78 +48,4 @@
         <item name="colorSurfaceContainerHigh">@color/md_theme_surfaceContainerHigh</item>
         <item name="colorSurfaceContainerHighest">@color/md_theme_surfaceContainerHighest</item>
     </style>
-
-    <style name="Roboto">
-        <item name="fontFamily">@font/roboto</item>
-    </style>
-
-    <style name="RobotoMedium">
-        <item name="fontFamily">@font/roboto_medium</item>
-    </style>
-
-    <style name="HeadlineLarge" parent="Roboto">
-        <item name="android:textSize">32sp</item>
-        <item name="android:lineHeight">40sp</item>
-    </style>
-
-    <style name="HeadlineMedium" parent="Roboto">
-        <item name="android:textSize">28sp</item>
-        <item name="android:lineHeight">36sp</item>
-    </style>
-
-    <style name="HeadlineSmall" parent="Roboto">
-        <item name="android:textSize">24sp</item>
-        <item name="android:lineHeight">32sp</item>
-    </style>
-
-    <style name="TitleLarge" parent="Roboto">
-        <item name="android:textSize">22sp</item>
-        <item name="android:lineHeight">28sp</item>
-    </style>
-
-    <style name="TitleMedium" parent="RobotoMedium">
-        <item name="android:textSize">16sp</item>
-        <item name="android:lineHeight">24sp</item>
-    </style>
-
-    <style name="TitleSmall" parent="RobotoMedium">
-        <item name="android:textSize">14sp</item>
-        <item name="android:lineHeight">20sp</item>
-    </style>
-
-
-    <style name="LabelLarge" parent="RobotoMedium">
-        <item name="android:textSize">14sp</item>
-        <item name="android:lineHeight">20sp</item>
-    </style>
-
-    <style name="LabelMedium" parent="RobotoMedium">
-        <item name="android:textSize">12sp</item>
-        <item name="android:lineHeight">26sp</item>
-    </style>
-
-    <style name="LabelSmall" parent="RobotoMedium">
-        <item name="android:textSize">11sp</item>
-        <item name="android:lineHeight">16sp</item>
-    </style>
-
-
-    <style name="BodyLarge" parent="Roboto">
-        <item name="android:textSize">16sp</item>
-        <item name="android:lineHeight">24sp</item>
-    </style>
-
-
-    <style name="BodyMedium" parent="Roboto">
-        <item name="android:textSize">14sp</item>
-        <item name="android:lineHeight">20sp</item>
-    </style>
-
-
-    <style name="BodySmall" parent="Roboto">
-        <item name="android:textSize">12sp</item>
-        <item name="android:lineHeight">16sp</item>
-    </style>
-
-
 </resources>

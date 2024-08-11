@@ -1,12 +1,8 @@
 package com.krayapp.dndworkaround
 
 import android.app.NotificationManager
-import android.content.ComponentName
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.provider.Settings
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import com.krayapp.dndworkaround.databinding.MainActivityBinding
@@ -14,32 +10,54 @@ import com.krayapp.dndworkaround.databinding.MainActivityBinding
 
 class DndActivity : AppCompatActivity() {
     private lateinit var vb: MainActivityBinding
-
+    private var permissionDialog: DndPermissionDialog? = null
     private lateinit var notificationManager: NotificationManager
+    private var prefs: GlobalPrefs? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.removeSystemInsets()
         vb = MainActivityBinding.inflate(LayoutInflater.from(this))
         setContentView(vb.root)
 
         notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-        vb.letDnd.setOnClickListener { openDndSettings() }
-        vb.letAutostart.setOnClickListener { openAutostart() }
+        vb.letPermission.setOnClickListener { openPermissionDialog() }
+        setupModeSelection()
     }
 
+    private fun openPermissionDialog() {
+        permissionDialog = DndPermissionDialog(this, notificationRightsGranted())
 
-    private fun openDndSettings() {
-        startActivity(Intent(Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS))
+        with(permissionDialog!!) {
+            setOnDismissListener { permissionDialog = null }
+            show()
+        }
     }
 
-    private fun openAutostart() {
-        startActivity(
-            Intent().setComponent(
-                ComponentName(
-                    "com.miui.securitycenter",
-                    "com.miui.permcenter.autostart.AutoStartManagementActivity"
-                )
-            )
-        )
+    override fun onResume() {
+        super.onResume()
+
+        if (!notificationRightsGranted())
+            openPermissionDialog()
+    }
+
+    private fun notificationRightsGranted() : Boolean {
+        val manager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        return manager.isNotificationPolicyAccessGranted()
+    }
+
+    private fun setupModeSelection() {
+        prefs = GlobalPrefs(this)
+        vb.radioGroup.setOnCheckedChangeListener { group, checkedId ->
+            when (checkedId) {
+                R.id.off -> recordMode(MODE_OFF)
+                R.id.vibro -> recordMode(MODE_VIBRO)
+                R.id.silent -> recordMode(MODE_SILENT)
+            }
+        }
+    }
+
+    private fun recordMode(mode: Int) {
+        prefs?.recordMode(mode)
     }
 }

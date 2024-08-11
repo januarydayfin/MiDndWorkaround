@@ -5,7 +5,6 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.media.AudioManager
-import android.util.Log
 
 class DndReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
@@ -13,21 +12,32 @@ class DndReceiver : BroadcastReceiver() {
         val manager = context?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         when (manager.currentInterruptionFilter) {
-            NotificationManager.INTERRUPTION_FILTER_ALL -> enableSound(context)
-            NotificationManager.INTERRUPTION_FILTER_PRIORITY -> muteSound(context)
+            NotificationManager.INTERRUPTION_FILTER_ALL -> enableMode(context)
+            NotificationManager.INTERRUPTION_FILTER_PRIORITY -> disableMode(context)
             else -> {}
         }
     }
 
 
-    private fun enableSound(context: Context?) {
-        val manager = context?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        manager.setInterruptionFilter(
-            NotificationManager.INTERRUPTION_FILTER_ALL
-        )
+    private fun enableMode(context: Context?) {
+        val audioManager = context?.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        val notificationManager = context?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+//        val mode = GlobalPrefs(context).getMode()
+        val mode = MODE_VIBRO
+
+//        audioManager.ringerMode = when (mode) {
+//            MODE_OFF -> AudioManager.RINGER_MODE_NORMAL
+//            MODE_SILENT -> AudioManager.RINGER_MODE_SILENT
+//            MODE_VIBRO -> AudioManager.RINGER_MODE_VIBRATE
+//            else -> AudioManager.RINGER_MODE_NORMAL
+//        }
+//        notificationManager.setInterruptionFilter(
+//            NotificationManager.INTERRUPTION_FILTER_ALL
+//        )
     }
 
-    private fun muteSound(context: Context?) {
+    private fun disableMode(context: Context?) {
         val manager = context?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         manager.setInterruptionFilter(
             NotificationManager.INTERRUPTION_FILTER_ALARMS

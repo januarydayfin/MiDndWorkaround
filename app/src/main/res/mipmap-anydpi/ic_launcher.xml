@@ -4,12 +4,12 @@
     <background android:drawable="@drawable/app_icon_background_rect" />
     <foreground>
         <inset
-            android:drawable="@drawable/moon"
+            android:drawable="@drawable/xiaomi_logo"
             android:inset="30%" />
     </foreground>
     <monochrome>
         <inset
-            android:drawable="@drawable/moon"
+            android:drawable="@drawable/xiaomi_logo"
             android:inset="30%" />
     </monochrome>
 </adaptive-icon>

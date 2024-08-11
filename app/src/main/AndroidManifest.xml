@@ -12,9 +12,10 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher_round"
         android:label="@string/app_name"
+        android:name=".DndApp"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.DndWorkaround"
+        android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
             android:name=".DndActivity"
