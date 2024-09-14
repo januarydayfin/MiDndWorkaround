@@ -1,14 +1,12 @@
 package com.krayapp.dndworkaround
 
-import android.Manifest.permission.READ_CONTACTS
 import android.app.NotificationManager
 import android.content.Context
 import android.media.AudioManager
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.gun0912.tedpermission.PermissionListener
-import com.gun0912.tedpermission.normal.TedPermission
 import com.krayapp.dndworkaround.databinding.MainActivityBinding
 
 
@@ -26,9 +24,8 @@ class DndActivity : AppCompatActivity() {
         notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         vb.letPermission.setOnClickListener { openPermissionDialog() }
+        vb.aboutApp.setOnClickListener { showAboutBottomsheet() }
         setupModeSelection()
-
-        vb.settings.setOnClickListener { openPermissionDialog() }
     }
 
     private fun openPermissionDialog() {
@@ -40,8 +37,15 @@ class DndActivity : AppCompatActivity() {
         }
     }
 
+    private fun showAboutBottomsheet() {
+        AboutBottomSheet().show(supportFragmentManager, "")
+    }
+
     override fun onResume() {
         super.onResume()
+        if (!notificationRightsGranted())
+            openPermissionDialog()
+
         restoreModeUI()
     }
 
@@ -52,21 +56,6 @@ class DndActivity : AppCompatActivity() {
             MODE_VIBRO -> vb.radioGroup.check(R.id.vibro)
             else -> {}
         }
-    }
-
-    private fun letContactPermission(onPermission: (Boolean) -> Unit) {
-        TedPermission.create()
-            .setPermissionListener(object : PermissionListener {
-                override fun onPermissionGranted() {
-                    onPermission(true)
-                }
-
-                override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
-                    onPermission(false)
-                }
-            })
-            .setPermissions(READ_CONTACTS)
-            .check()
     }
 
     private fun notificationRightsGranted(): Boolean {
@@ -87,16 +76,5 @@ class DndActivity : AppCompatActivity() {
 
     private fun recordMode(mode: Int) {
         prefs?.recordMode = mode
-        applyRingerMode(mode)
-    }
-
-    private fun applyRingerMode(mode: Int) {
-        val audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
-        audioManager.ringerMode = when (mode) {
-            MODE_OFF -> AudioManager.RINGER_MODE_NORMAL
-            MODE_SILENT -> AudioManager.RINGER_MODE_SILENT
-            MODE_VIBRO -> AudioManager.RINGER_MODE_VIBRATE
-            else -> AudioManager.RINGER_MODE_NORMAL
-        }
     }
 }

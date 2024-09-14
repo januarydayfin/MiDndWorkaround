@@ -3,12 +3,12 @@
     <background android:drawable="@drawable/app_icon_background_circle" />
     <foreground>
         <inset
-            android:drawable="@drawable/xiaomi_logo"
-            android:inset="10%" />
+            android:drawable="@drawable/logo"
+            android:inset="20%" />
     </foreground>
     <monochrome>
         <inset
-            android:drawable="@drawable/xiaomi_logo"
-            android:inset="10%" />
+            android:drawable="@drawable/logo"
+            android:inset="20%" />
     </monochrome>
 </adaptive-icon>

@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Kray DND Workaround</string>
-    <string name="give_dnd">Give rights to DND</string>
+    <string name="app_name">DND Workaround</string>
+    <string name="give_dnd">Let «DND» permission</string>
     <string name="give_battery">Give rights to energy saving</string>
-    <string name="enable_autostart">Enable autostart</string>
+    <string name="enable_autostart">Check autostart</string>
     <string name="no_xiaomi">This is not Xiaomi</string>
     <string name="let_permission">Let permission</string>
-    <string name="title">Xiaomi/Redmi DND Fixer</string>
-    <string name="about">О программе</string>
+    <string name="about">About App</string>
     <string name="close">Close</string>
-
+    <string name="gotit">Got it</string>
+    <string name="about_text">Application is created to solve the «Do not disturb» glitch on Xiaomi/Redmi smartphones of global versions.\n\nOn the main screen of the application, we can choose which mode will be set in the smartphone when activating the system «Do not disturb»\n\nFor the correct operation of the application, it is necessary to grant the necessary rights, the dialog will open by clicking on «Let permission»</string>
+    <string name="permission_error">Seems like application has no permission, check permission</string>
+    <string name="choose_mode">Choose mode, which will be used on system «DND» activated</string>
     <!-- modes-->
     <string name="system">As in system</string>
     <string name="chosen_contacts">Favorites contacts</string>

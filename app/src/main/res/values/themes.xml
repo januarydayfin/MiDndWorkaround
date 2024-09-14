@@ -1,6 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.Material3.Light.NoActionBar">
+        <item name="bottomSheetBottomColor">?attr/colorSurfaceContainerLow</item>
         <item name="colorPrimary">@color/md_theme_primary</item>
         <item name="colorOnPrimary">@color/md_theme_onPrimary</item>
         <item name="colorPrimaryContainer">@color/md_theme_primaryContainer</item>
@@ -121,5 +122,12 @@
         <item name="android:lineHeight">16sp</item>
     </style>
 
+    <style name="ViewDragStyle">
+        <item name="android:layout_width">32dp</item>
+        <item name="android:layout_height">4dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:background">@drawable/drag_drawable</item>
+    </style>
 
 </resources>

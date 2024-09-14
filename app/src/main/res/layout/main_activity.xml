@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/md_theme_surface"
@@ -9,75 +7,80 @@
     android:paddingHorizontal="16dp"
     android:paddingVertical="?android:actionBarSize">
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/title"
-        android:textAlignment="center"
-        android:textAppearance="@style/HeadlineLarge"
-        android:textColor="@color/md_theme_onSurface"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_marginTop="56dp"
+        android:layout_gravity="center_horizontal|top"
+        android:src="@drawable/dnd" />
 
-    <Button
-        android:id="@+id/letPermission"
-        style="@style/ThemeOverlay.Material3.Button.TonalButton"
+
+    <TextView
+        android:textAlignment="center"
+        android:text="@string/choose_mode"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/let_permission"
-        app:layout_constraintBottom_toTopOf="@+id/radioGroup"
-        app:layout_constraintTop_toBottomOf="@id/title"
-        tools:layout_editor_absoluteX="16dp" />
+        android:layout_marginTop="12dp"
+        android:layout_height="wrap_content"/>
 
     <RadioGroup
         android:id="@+id/radioGroup"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="16dp">
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp">
 
         <RadioButton
             android:id="@+id/off"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/system"
             android:textAppearance="@style/BodyMedium" />
 
         <RadioButton
             android:id="@+id/silent"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/silent"
             android:textAppearance="@style/BodyMedium" />
 
         <RadioButton
             android:id="@+id/vibro"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/vibro"
             android:textAppearance="@style/BodyMedium" />
     </RadioGroup>
 
 
-    <Button
-        android:id="@+id/aboutApp"
-        style="?attr/materialButtonOutlinedStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/about"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
-    <View
-        android:id="@+id/settings"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:background="@drawable/ic_menu"
-        android:backgroundTint="@color/md_theme_primary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/aboutApp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/letPermission"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/let_permission" />
+
+        <Button
+            android:id="@+id/aboutApp"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:text="@string/about" />
+    </LinearLayout>
+
+
+</LinearLayout>
