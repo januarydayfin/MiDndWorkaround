@@ -2,10 +2,10 @@ package com.krayapp.dndworkaround
 
 import android.app.NotificationManager
 import android.content.Context
-import android.media.AudioManager
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.krayapp.dndworkaround.databinding.MainActivityBinding
 
@@ -25,6 +25,7 @@ class DndActivity : AppCompatActivity() {
 
         vb.letPermission.setOnClickListener { openPermissionDialog() }
         vb.aboutApp.setOnClickListener { showAboutBottomsheet() }
+        vb.githubLink.setOnClickListener { openGitPage() }
         setupModeSelection()
     }
 
@@ -74,6 +75,10 @@ class DndActivity : AppCompatActivity() {
         }
     }
 
+    private fun openGitPage() {
+        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/januarydayfin/MiDndWorkaround"))
+        startActivity(browserIntent)
+    }
     private fun recordMode(mode: Int) {
         prefs?.recordMode = mode
     }
