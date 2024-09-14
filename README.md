@@ -1,3 +1,5 @@
+[<img src="en.svg">]()
+
 This application was made for workaround glitchy MIUI/HyperOS Dnd mode
 
 How it works:
@@ -18,7 +20,4 @@ How to setup it?
 
 Now app will turn on silent mode, if system DND enabled. You can use DND schedule or what you want for manage DND
 
-
-
-
-![Screenrecorder-2024-06-26-07-41-25-621-ezgif com-resize](https://github.com/januarydayfin/MiDndWorkaround/assets/50882897/7a4aac00-d674-4511-b060-e16cbcc6da99)
+![ezgif-3-d6884e39da](https://github.com/user-attachments/assets/6d2e19c8-8fc0-4c89-b7fb-a334c352810f)
