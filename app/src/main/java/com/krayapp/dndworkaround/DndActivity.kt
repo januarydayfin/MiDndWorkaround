@@ -1,11 +1,16 @@
 package com.krayapp.dndworkaround
 
+import android.Manifest.permission.READ_CONTACTS
 import android.app.NotificationManager
 import android.content.Context
 import android.media.AudioManager
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.gun0912.tedpermission.PermissionListener
+import com.gun0912.tedpermission.normal.TedPermission
 import com.krayapp.dndworkaround.databinding.MainActivityBinding
 
 
@@ -14,6 +19,7 @@ class DndActivity : AppCompatActivity() {
     private var permissionDialog: DndPermissionDialog? = null
     private lateinit var notificationManager: NotificationManager
     private var prefs: GlobalPrefs? = null
+    private val starredChecker = StarredChecker(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.removeSystemInsets()
@@ -24,6 +30,24 @@ class DndActivity : AppCompatActivity() {
 
         vb.letPermission.setOnClickListener { openPermissionDialog() }
         setupModeSelection()
+
+        vb.settings.setOnClickListener { openPermissionDialog() }
+        setupContactSwitch()
+    }
+
+    private fun setupContactSwitch() {
+        vb.favoritesContactsAvailable.setOnCheckedChangeListener { _, isChecked ->
+            prefs?.useContacts = isChecked
+        }
+        vb.favoritesContactsAvailable.setOnClickListener {
+            letContactPermission { granted ->
+                if (granted)
+                    starredChecker.getStarredContactNumbers()
+
+                vb.favoritesContactsAvailable.isChecked = granted
+            }
+        }
+        vb.favoritesContactsAvailable.isChecked = prefs?.useContacts ?: false
     }
 
     private fun openPermissionDialog() {
@@ -37,21 +61,34 @@ class DndActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-
         restoreModeUI()
-        if (!notificationRightsGranted())
-            openPermissionDialog()
     }
 
     private fun restoreModeUI() {
-        when (prefs?.getMode()) {
+        when (prefs?.recordMode) {
             MODE_OFF -> vb.radioGroup.check(R.id.off)
             MODE_SILENT -> vb.radioGroup.check(R.id.silent)
             MODE_VIBRO -> vb.radioGroup.check(R.id.vibro)
             else -> {}
         }
     }
-    private fun notificationRightsGranted() : Boolean {
+
+    private fun letContactPermission(onPermission: (Boolean) -> Unit) {
+        TedPermission.create()
+            .setPermissionListener(object : PermissionListener {
+                override fun onPermissionGranted() {
+                    onPermission(true)
+                }
+
+                override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
+                    onPermission(false)
+                }
+            })
+            .setPermissions(READ_CONTACTS)
+            .check()
+    }
+
+    private fun notificationRightsGranted(): Boolean {
         val manager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         return manager.isNotificationPolicyAccessGranted()
     }
@@ -68,7 +105,7 @@ class DndActivity : AppCompatActivity() {
     }
 
     private fun recordMode(mode: Int) {
-        prefs?.recordMode(mode)
+        prefs?.recordMode = mode
         applyRingerMode(mode)
     }
 

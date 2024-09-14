@@ -13,9 +13,9 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:text="@string/title"
         android:textAlignment="center"
-        android:layout_marginTop="24dp"
         android:textAppearance="@style/HeadlineLarge"
         android:textColor="@color/md_theme_onSurface"
         app:layout_constraintTop_toTopOf="parent" />
@@ -34,9 +34,9 @@
     <com.google.android.material.materialswitch.MaterialSwitch
         android:id="@+id/favoritesContactsAvailable"
         android:layout_width="match_parent"
-        android:textAppearance="@style/BodyMedium"
         android:layout_height="wrap_content"
         android:text="@string/chosen_contacts"
+        android:textAppearance="@style/BodyMedium"
         app:layout_constraintBottom_toTopOf="@+id/radioGroup"
         app:layout_constraintTop_toBottomOf="@+id/letPermission"
         tools:layout_editor_absoluteX="16dp" />
@@ -50,25 +50,25 @@
         tools:layout_editor_absoluteX="16dp">
 
         <RadioButton
-            android:textAppearance="@style/BodyMedium"
             android:id="@+id/off"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/system" />
+            android:text="@string/system"
+            android:textAppearance="@style/BodyMedium" />
 
         <RadioButton
-            android:textAppearance="@style/BodyMedium"
             android:id="@+id/silent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/silent" />
+            android:text="@string/silent"
+            android:textAppearance="@style/BodyMedium" />
 
         <RadioButton
-            android:textAppearance="@style/BodyMedium"
             android:id="@+id/vibro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/vibro" />
+            android:text="@string/vibro"
+            android:textAppearance="@style/BodyMedium" />
     </RadioGroup>
 
 
@@ -81,4 +81,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/settings"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/ic_menu"
+        android:backgroundTint="@color/md_theme_primary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/aboutApp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

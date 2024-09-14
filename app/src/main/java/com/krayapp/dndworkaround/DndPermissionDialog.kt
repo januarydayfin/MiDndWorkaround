@@ -34,7 +34,7 @@ class DndPermissionDialog(context: Context, private val dndGranted: Boolean) : D
         updatePermissionViews(dndGranted)
     }
 
-    fun updatePermissionViews(dndGranted: Boolean) {
+    private fun updatePermissionViews(dndGranted: Boolean) {
         vb?.letDnd?.isEnabled  = !dndGranted
         vb?.dndGranted?.isVisible = dndGranted
     }

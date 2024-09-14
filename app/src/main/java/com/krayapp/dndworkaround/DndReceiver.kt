@@ -19,7 +19,7 @@ class DndReceiver : BroadcastReceiver() {
 
     private fun shutUp(context: Context?) {
         val audioManager = context?.getSystemService(Context.AUDIO_SERVICE) as AudioManager
-        val mode = GlobalPrefs(context).getMode()
+        val mode = GlobalPrefs(context).recordMode
 
         audioManager.ringerMode = when (mode) {
             MODE_OFF -> AudioManager.RINGER_MODE_NORMAL
