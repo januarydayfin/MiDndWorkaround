@@ -9,6 +9,7 @@
     <string name="about">About App</string>
     <string name="close">Close</string>
     <string name="gotit">Got it</string>
+    <string name="apply_on_next_dnd">Mode will be used in next «Do not disturb» enabled</string>
     <string name="about_text">Application is created to solve the «Do not disturb» glitch on Xiaomi/Redmi smartphones of global versions.\n\nOn the main screen of the application, we can choose which mode will be set in the smartphone when activating the system «Do not disturb»\n\nFor the correct operation of the application, it is necessary to grant the necessary rights, the dialog will open by clicking on «Let permission»</string>
     <string name="permission_error">Seems like application has no permission, check permission</string>
     <string name="choose_mode">Choose mode, which will be used on system «DND» activated</string>

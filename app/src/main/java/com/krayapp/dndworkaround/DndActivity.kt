@@ -1,11 +1,14 @@
 package com.krayapp.dndworkaround
 
 import android.app.NotificationManager
+import android.app.NotificationManager.INTERRUPTION_FILTER_PRIORITY
 import android.content.Context
 import android.content.Intent
+import android.media.AudioManager
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.krayapp.dndworkaround.databinding.MainActivityBinding
 
@@ -76,10 +79,31 @@ class DndActivity : AppCompatActivity() {
     }
 
     private fun openGitPage() {
-        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/januarydayfin/MiDndWorkaround"))
+        val browserIntent = Intent(
+            Intent.ACTION_VIEW,
+            Uri.parse("https://github.com/januarydayfin/MiDndWorkaround")
+        )
         startActivity(browserIntent)
     }
+
     private fun recordMode(mode: Int) {
         prefs?.recordMode = mode
+        tryToApplyMode(mode)
+    }
+
+    private fun tryToApplyMode(mode: Int) {
+        val dnd = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        val audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+
+        if (dnd.currentInterruptionFilter == INTERRUPTION_FILTER_PRIORITY)
+            audioManager.ringerMode = when (mode) {
+                MODE_OFF -> AudioManager.RINGER_MODE_NORMAL
+                MODE_SILENT -> AudioManager.RINGER_MODE_SILENT
+                MODE_VIBRO -> AudioManager.RINGER_MODE_VIBRATE
+                else -> AudioManager.RINGER_MODE_NORMAL
+            }
+        else
+            Toast.makeText(this, R.string.apply_on_next_dnd, Toast.LENGTH_SHORT).show()
     }
 }
