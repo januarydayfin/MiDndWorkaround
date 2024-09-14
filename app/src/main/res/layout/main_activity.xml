@@ -30,17 +30,6 @@
         app:layout_constraintTop_toBottomOf="@id/title"
         tools:layout_editor_absoluteX="16dp" />
 
-
-    <com.google.android.material.materialswitch.MaterialSwitch
-        android:id="@+id/favoritesContactsAvailable"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/chosen_contacts"
-        android:textAppearance="@style/BodyMedium"
-        app:layout_constraintBottom_toTopOf="@+id/radioGroup"
-        app:layout_constraintTop_toBottomOf="@+id/letPermission"
-        tools:layout_editor_absoluteX="16dp" />
-
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="match_parent"

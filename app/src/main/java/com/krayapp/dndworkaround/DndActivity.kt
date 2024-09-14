@@ -5,9 +5,7 @@ import android.app.NotificationManager
 import android.content.Context
 import android.media.AudioManager
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.normal.TedPermission
@@ -19,7 +17,6 @@ class DndActivity : AppCompatActivity() {
     private var permissionDialog: DndPermissionDialog? = null
     private lateinit var notificationManager: NotificationManager
     private var prefs: GlobalPrefs? = null
-    private val starredChecker = StarredChecker(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.removeSystemInsets()
@@ -32,22 +29,6 @@ class DndActivity : AppCompatActivity() {
         setupModeSelection()
 
         vb.settings.setOnClickListener { openPermissionDialog() }
-        setupContactSwitch()
-    }
-
-    private fun setupContactSwitch() {
-        vb.favoritesContactsAvailable.setOnCheckedChangeListener { _, isChecked ->
-            prefs?.useContacts = isChecked
-        }
-        vb.favoritesContactsAvailable.setOnClickListener {
-            letContactPermission { granted ->
-                if (granted)
-                    starredChecker.getStarredContactNumbers()
-
-                vb.favoritesContactsAvailable.isChecked = granted
-            }
-        }
-        vb.favoritesContactsAvailable.isChecked = prefs?.useContacts ?: false
     }
 
     private fun openPermissionDialog() {

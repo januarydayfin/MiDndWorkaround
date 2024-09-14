@@ -7,6 +7,7 @@ import android.content.Intent
 import android.media.AudioManager
 
 class DndReceiver : BroadcastReceiver() {
+
     override fun onReceive(context: Context?, intent: Intent?) {
         val manager = context?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         when (manager.currentInterruptionFilter) {
@@ -34,4 +35,6 @@ class DndReceiver : BroadcastReceiver() {
         val audioManager = context?.getSystemService(Context.AUDIO_SERVICE) as AudioManager
         audioManager.ringerMode = AudioManager.RINGER_MODE_NORMAL
     }
+
+
 }
