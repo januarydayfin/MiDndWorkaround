@@ -11,7 +11,7 @@
     <string name="close">Close</string>
 
     <!-- modes-->
-    <string name="off">Off</string>
+    <string name="system">As in system</string>
     <string name="chosen_contacts">Favorites contacts</string>
     <string name="silent">Full silent</string>
     <string name="vibro">Vibro only</string>

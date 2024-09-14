@@ -2,6 +2,7 @@ package com.krayapp.dndworkaround
 
 import android.app.NotificationManager
 import android.content.Context
+import android.media.AudioManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
@@ -37,10 +38,19 @@ class DndActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
+        restoreModeUI()
         if (!notificationRightsGranted())
             openPermissionDialog()
     }
 
+    private fun restoreModeUI() {
+        when (prefs?.getMode()) {
+            MODE_OFF -> vb.radioGroup.check(R.id.off)
+            MODE_SILENT -> vb.radioGroup.check(R.id.silent)
+            MODE_VIBRO -> vb.radioGroup.check(R.id.vibro)
+            else -> {}
+        }
+    }
     private fun notificationRightsGranted() : Boolean {
         val manager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         return manager.isNotificationPolicyAccessGranted()
@@ -48,7 +58,7 @@ class DndActivity : AppCompatActivity() {
 
     private fun setupModeSelection() {
         prefs = GlobalPrefs(this)
-        vb.radioGroup.setOnCheckedChangeListener { group, checkedId ->
+        vb.radioGroup.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
                 R.id.off -> recordMode(MODE_OFF)
                 R.id.vibro -> recordMode(MODE_VIBRO)
@@ -59,5 +69,16 @@ class DndActivity : AppCompatActivity() {
 
     private fun recordMode(mode: Int) {
         prefs?.recordMode(mode)
+        applyRingerMode(mode)
+    }
+
+    private fun applyRingerMode(mode: Int) {
+        val audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        audioManager.ringerMode = when (mode) {
+            MODE_OFF -> AudioManager.RINGER_MODE_NORMAL
+            MODE_SILENT -> AudioManager.RINGER_MODE_SILENT
+            MODE_VIBRO -> AudioManager.RINGER_MODE_VIBRATE
+            else -> AudioManager.RINGER_MODE_NORMAL
+        }
     }
 }

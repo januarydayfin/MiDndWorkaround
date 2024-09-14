@@ -54,7 +54,7 @@
             android:id="@+id/off"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/off" />
+            android:text="@string/system" />
 
         <RadioButton
             android:textAppearance="@style/BodyMedium"

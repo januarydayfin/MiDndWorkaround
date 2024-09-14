@@ -9,7 +9,7 @@
     <string name="about">About</string>
     <string name="close">Закрыть</string>
     <!-- modes-->
-    <string name="off">Выключено</string>
+    <string name="system">Как в системе</string>
     <string name="chosen_contacts">Избранные контакты</string>
     <string name="silent">Тихий режим</string>
     <string name="vibro">Вибрация</string>
