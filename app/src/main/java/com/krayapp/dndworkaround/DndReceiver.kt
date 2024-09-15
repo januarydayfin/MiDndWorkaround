@@ -1,5 +1,6 @@
 package com.krayapp.dndworkaround
 
+import android.annotation.SuppressLint
 import android.app.NotificationManager
 import android.app.NotificationManager.INTERRUPTION_FILTER_ALARMS
 import android.app.NotificationManager.INTERRUPTION_FILTER_ALL
@@ -11,6 +12,7 @@ import android.media.AudioManager
 
 class DndReceiver : BroadcastReceiver() {
 
+    @SuppressLint("UnsafeProtectedBroadcastReceiver")
     override fun onReceive(context: Context?, intent: Intent?) {
         val manager = context?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         when (manager.currentInterruptionFilter) {
@@ -38,7 +40,7 @@ class DndReceiver : BroadcastReceiver() {
         val notificationManager = context?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         notificationManager.setInterruptionFilter(INTERRUPTION_FILTER_ALL)
-        val audioManager = context?.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
         audioManager.ringerMode = AudioManager.RINGER_MODE_NORMAL
     }
 
