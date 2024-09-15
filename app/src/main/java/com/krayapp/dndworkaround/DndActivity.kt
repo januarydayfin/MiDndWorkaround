@@ -1,6 +1,7 @@
 package com.krayapp.dndworkaround
 
 import android.app.NotificationManager
+import android.app.NotificationManager.INTERRUPTION_FILTER_ALARMS
 import android.app.NotificationManager.INTERRUPTION_FILTER_PRIORITY
 import android.content.Context
 import android.content.Intent
@@ -30,6 +31,7 @@ class DndActivity : AppCompatActivity() {
         vb.aboutApp.setOnClickListener { showAboutBottomsheet() }
         vb.githubLink.setOnClickListener { openGitPage() }
         setupModeSelection()
+
     }
 
     private fun openPermissionDialog() {
@@ -49,7 +51,6 @@ class DndActivity : AppCompatActivity() {
         super.onResume()
         if (!notificationRightsGranted())
             openPermissionDialog()
-
         restoreModeUI()
     }
 
@@ -95,15 +96,15 @@ class DndActivity : AppCompatActivity() {
         val dnd = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         val audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
-
-        if (dnd.currentInterruptionFilter == INTERRUPTION_FILTER_PRIORITY)
-            audioManager.ringerMode = when (mode) {
-                MODE_OFF -> AudioManager.RINGER_MODE_NORMAL
-                MODE_SILENT -> AudioManager.RINGER_MODE_SILENT
-                MODE_VIBRO -> AudioManager.RINGER_MODE_VIBRATE
-                else -> AudioManager.RINGER_MODE_NORMAL
+        val notificationManager =
+            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        if (dnd.currentInterruptionFilter == INTERRUPTION_FILTER_PRIORITY || dnd.currentInterruptionFilter == INTERRUPTION_FILTER_ALARMS) {
+            when (mode) {
+                MODE_OFF -> audioManager.ringerMode = AudioManager.RINGER_MODE_NORMAL
+                MODE_SILENT -> notificationManager.setInterruptionFilter(INTERRUPTION_FILTER_ALARMS) //needs for
+                MODE_VIBRO -> audioManager.ringerMode = AudioManager.RINGER_MODE_VIBRATE
             }
-        else
+        } else
             Toast.makeText(this, R.string.apply_on_next_dnd, Toast.LENGTH_SHORT).show()
     }
 }
