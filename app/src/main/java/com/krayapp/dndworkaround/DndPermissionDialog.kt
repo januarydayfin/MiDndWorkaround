@@ -14,7 +14,8 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import com.krayapp.dndworkaround.databinding.PermissionDialogBinding
 
-class DndPermissionDialog(context: Context, private val dndGranted: Boolean) : Dialog(context) {
+class DndPermissionDialog(context: Context, private val dndGranted: () -> Boolean) :
+    Dialog(context) {
 
     private var vb: PermissionDialogBinding? = null
 
@@ -31,12 +32,12 @@ class DndPermissionDialog(context: Context, private val dndGranted: Boolean) : D
             letDnd.setOnClickListener { openDndSettings() }
             close.setOnClickListener { dismiss() }
         }
-        updatePermissionViews(dndGranted)
+        updatePermissionViews()
     }
 
-    private fun updatePermissionViews(dndGranted: Boolean) {
-        vb?.letDnd?.isEnabled  = !dndGranted
-        vb?.dndGranted?.isVisible = dndGranted
+    fun updatePermissionViews() {
+        vb?.letDnd?.isEnabled = !dndGranted()
+        vb?.dndGranted?.isVisible = dndGranted()
     }
 
     override fun setOnDismissListener(listener: DialogInterface.OnDismissListener?) {

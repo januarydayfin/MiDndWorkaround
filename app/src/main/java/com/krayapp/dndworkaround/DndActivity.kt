@@ -35,7 +35,7 @@ class DndActivity : AppCompatActivity() {
     }
 
     private fun openPermissionDialog() {
-        permissionDialog = DndPermissionDialog(this, notificationRightsGranted())
+        permissionDialog = DndPermissionDialog(this) { notificationRightsGranted() }
 
         with(permissionDialog!!) {
             setOnDismissListener { permissionDialog = null }
@@ -51,6 +51,7 @@ class DndActivity : AppCompatActivity() {
         super.onResume()
         if (!notificationRightsGranted())
             openPermissionDialog()
+        permissionDialog?.updatePermissionViews()
         restoreModeUI()
     }
 
@@ -93,18 +94,25 @@ class DndActivity : AppCompatActivity() {
     }
 
     private fun tryToApplyMode(mode: Int) {
-        val dnd = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        try {
+            val dnd = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-        val audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
-        val notificationManager =
-            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        if (dnd.currentInterruptionFilter == INTERRUPTION_FILTER_PRIORITY || dnd.currentInterruptionFilter == INTERRUPTION_FILTER_ALARMS) {
-            when (mode) {
-                MODE_OFF -> audioManager.ringerMode = AudioManager.RINGER_MODE_NORMAL
-                MODE_SILENT -> notificationManager.setInterruptionFilter(INTERRUPTION_FILTER_ALARMS) //needs for
-                MODE_VIBRO -> audioManager.ringerMode = AudioManager.RINGER_MODE_VIBRATE
-            }
-        } else
-            Toast.makeText(this, R.string.apply_on_next_dnd, Toast.LENGTH_SHORT).show()
+            val audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+            val notificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            if (dnd.currentInterruptionFilter == INTERRUPTION_FILTER_PRIORITY || dnd.currentInterruptionFilter == INTERRUPTION_FILTER_ALARMS) {
+                when (mode) {
+                    MODE_OFF -> audioManager.ringerMode = AudioManager.RINGER_MODE_NORMAL
+                    MODE_SILENT -> notificationManager.setInterruptionFilter(
+                        INTERRUPTION_FILTER_ALARMS
+                    ) //needs for
+                    MODE_VIBRO -> audioManager.ringerMode = AudioManager.RINGER_MODE_VIBRATE
+                }
+            } else
+                Toast.makeText(this, R.string.apply_on_next_dnd, Toast.LENGTH_SHORT).show()
+        } catch (_: Exception) {
+            Toast.makeText(this, R.string.permission_error, Toast.LENGTH_SHORT).show()
+        }
+
     }
 }
