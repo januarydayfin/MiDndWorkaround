@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DND Workaround</string>
+    <string name="app_name">Xiaomi «Do Not Disturb» Fixer</string>
     <string name="give_dnd">Права «Не беспокоить»</string>
     <string name="give_battery">Выдать права на энергосбережение</string>
     <string name="enable_autostart">Проверить автостарт</string>

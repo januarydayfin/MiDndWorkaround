@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">DND Workaround</string>
+    <string name="app_name">Xiaomi «Do Not Disturb» Fixer</string>
     <string name="give_dnd">Let «DND» permission</string>
     <string name="give_battery">Give rights to energy saving</string>
     <string name="enable_autostart">Check autostart</string>
