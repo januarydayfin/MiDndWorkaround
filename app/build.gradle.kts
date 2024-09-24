@@ -11,8 +11,8 @@ android {
         applicationId = "com.krayapp.dndworkaround"
         minSdk = 29
         targetSdk = 34
-        versionCode = 103
-        versionName = "1.03"
+        versionCode = 104
+        versionName = "1.04"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
