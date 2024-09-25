@@ -1,5 +1,3 @@
-[<img src="en.svg">]()
-
 This application was made for workaround glitchy MIUI/HyperOS Dnd mode
 
 How it works:
