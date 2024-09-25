@@ -8,11 +8,11 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.krayapp.dndworkaround"
+        applicationId = "com.krayapp.xiaomidndfixer"
         minSdk = 29
         targetSdk = 34
-        versionCode = 104
-        versionName = "1.04"
+        versionCode = 100
+        versionName = "1.00"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
