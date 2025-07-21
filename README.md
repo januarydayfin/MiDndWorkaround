@@ -1,3 +1,5 @@
+[<img src="en.svg">](https://play.google.com/store/apps/details?id=com.krayapp.xiaomidndfixer)
+
 This application was made for workaround glitchy MIUI/HyperOS Dnd mode
 
 How it works:
