@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/md_theme_surface"
+    android:background="?attr/colorSurface"
     android:orientation="vertical"
     android:paddingHorizontal="16dp"
     android:paddingVertical="?android:actionBarSize">
@@ -10,17 +10,16 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="200dp"
-        android:layout_marginTop="56dp"
         android:layout_gravity="center_horizontal|top"
-        android:src="@drawable/dnd" />
-
+        android:layout_marginTop="56dp"
+        android:src="@drawable/mainlogo" />
 
     <TextView
-        android:textAlignment="center"
-        android:text="@string/choose_mode"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:layout_height="wrap_content"/>
+        android:text="@string/choose_mode"
+        android:textAlignment="center" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -33,22 +32,19 @@
             android:id="@+id/off"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/system"
-            android:textAppearance="@style/BodyMedium" />
+            android:text="@string/system" />
 
         <RadioButton
             android:id="@+id/silent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/silent"
-            android:textAppearance="@style/BodyMedium" />
+            android:text="@string/silent" />
 
         <RadioButton
             android:id="@+id/vibro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/vibro"
-            android:textAppearance="@style/BodyMedium" />
+            android:text="@string/vibro" />
     </RadioGroup>
 
 
@@ -59,11 +55,12 @@
 
     <ImageView
         android:id="@+id/githubLink"
-        android:src="@drawable/gitlogo"
         android:layout_width="200dp"
+        android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="8dp"
-        android:layout_height="50dp"/>
+        android:src="@drawable/gitlogo" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

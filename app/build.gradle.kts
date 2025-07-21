@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.krayapp.dndworkaround"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.krayapp.xiaomidndfixer"
         minSdk = 29
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 100
         versionName = "1.00"
 

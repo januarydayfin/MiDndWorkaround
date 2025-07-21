@@ -2,42 +2,42 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="300dp"
     android:layout_height="wrap_content"
-    android:animateLayoutChanges="true"
-    android:layout_gravity="center">
+    android:layout_gravity="center"
+    android:animateLayoutChanges="true">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:animateLayoutChanges="true"
         android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
         android:background="@drawable/background_surface_rounded"
         android:orientation="vertical"
         android:padding="18dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:animateLayoutChanges="true"
             android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <Button
-                android:animateLayoutChanges="true"
                 android:id="@+id/letDnd"
                 style="@style/ThemeOverlay.Material3.Button.TonalButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
+                android:animateLayoutChanges="true"
                 android:text="@string/give_dnd"
                 android:textAlignment="center" />
 
             <ImageView
                 android:id="@+id/dndGranted"
-                android:visibility="gone"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="4dp"
-                android:src="@drawable/check_on" />
+                android:src="@drawable/check_on"
+                android:visibility="gone" />
         </LinearLayout>
 
 
@@ -53,10 +53,9 @@
 
 
         <FrameLayout
-            android:layout_marginTop="36dp"
-
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp">
 
             <Button
                 android:id="@+id/close"

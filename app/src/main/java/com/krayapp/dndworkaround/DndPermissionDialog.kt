@@ -25,7 +25,7 @@ class DndPermissionDialog(context: Context, private val dndGranted: () -> Boolea
 
         setContentView(vb!!.root)
 
-        window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        window?.setBackgroundDrawable(context.getDrawable(R.drawable.background_surface_rounded))
 
         with(vb!!) {
             letAutostart.setOnClickListener { openAutostart() }

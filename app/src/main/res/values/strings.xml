@@ -1,20 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Xiaomi «Do Not Disturb» Fixer</string>
-    <string name="give_dnd">Права «Не беспокоить»</string>
-    <string name="give_battery">Выдать права на энергосбережение</string>
-    <string name="enable_autostart">Проверить автостарт</string>
-    <string name="no_xiaomi">Это не Xiaomi</string>
-    <string name="let_permission">Выдать права</string>
-    <string name="about">About</string>
-    <string name="close">Закрыть</string>
-    <string name="gotit">Понятно</string>
-    <string name="permission_error">Похоже у приложения нет нужных прав, проверьте выданные права</string>
-    <string name="apply_on_next_dnd">Режим будет включен при следующем запуске «Не беспокоить»</string>
-    <string name="choose_mode">Выберите режим, который будет применен при активации системного «Не беспокоить»</string>
-    <string name="about_text">Приложение создано для решения глитча «Не беспокоить» на смартфонах Xiaomi/Redmi глобальных версий.\n\nНа главном экране приложения можем выбрать, какой режим будет установлен в смартфоне при активации системного «Не беспокоить»\n\nДля корректной работы приложения необходимо выдать нужные права, диалог откроется по клику на «Выдать права»</string>
+    <string name="give_dnd">Let «DND» permission</string>
+    <string name="give_battery">Give rights to energy saving</string>
+    <string name="enable_autostart">Check autostart</string>
+    <string name="no_xiaomi">This is not Xiaomi</string>
+    <string name="let_permission">Let permission</string>
+    <string name="about">About App</string>
+    <string name="close">Close</string>
+    <string name="gotit">Got it</string>
+    <string name="apply_on_next_dnd">Mode will be used in next «Do not disturb» enabled</string>
+    <string name="about_text">Application is created to solve the «Do not disturb» glitch on Xiaomi/Redmi smartphones of global versions.\n\nOn the main screen of the application, we can choose which mode will be set in the smartphone when activating the system «Do not disturb»\n\nFor the correct operation of the application, it is necessary to grant the necessary rights, the dialog will open by clicking on «Let permission»</string>
+    <string name="permission_error">Seems like application has no permission, check permission</string>
+    <string name="choose_mode">Choose mode, which will be used on system «DND» activated</string>
     <!-- modes-->
-    <string name="system">Как в системе</string>
-    <string name="chosen_contacts">Избранные контакты</string>
-    <string name="silent">Тихий режим</string>
-    <string name="vibro">Вибрация</string>
+    <string name="system">As in system</string>
+    <string name="chosen_contacts">Favorites contacts</string>
+    <string name="silent">Full silent</string>
+    <string name="vibro">Vibro only</string>
 </resources>

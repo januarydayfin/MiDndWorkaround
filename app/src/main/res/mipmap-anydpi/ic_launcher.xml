@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
-
     <background android:drawable="@drawable/app_icon_background_rect" />
     <foreground>
         <inset
-            android:drawable="@drawable/logo"
-            android:inset="0%" />
+            android:drawable="@drawable/logo_svg"
+            android:inset="20%" />
     </foreground>
-    <monochrome>
-        <inset
-            android:drawable="@drawable/logo"
-            android:inset="0%" />
-    </monochrome>
 </adaptive-icon>

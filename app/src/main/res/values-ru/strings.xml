@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Xiaomi «Do Not Disturb» Fixer</string>
+    <string name="give_dnd">Права «Не беспокоить»</string>
+    <string name="give_battery">Выдать права на энергосбережение</string>
+    <string name="enable_autostart">Проверить автостарт</string>
+    <string name="no_xiaomi">Это не Xiaomi</string>
+    <string name="let_permission">Выдать права</string>
+    <string name="about">О приложении</string>
+    <string name="close">Закрыть</string>
+    <string name="gotit">Понятно</string>
+    <string name="permission_error">Похоже у приложения нет нужных прав, проверьте выданные права</string>
+    <string name="apply_on_next_dnd">Режим будет включен при следующем запуске «Не беспокоить»</string>
+    <string name="choose_mode">Выберите режим, который будет применен при активации системного «Не беспокоить»</string>
+    <string name="about_text">Приложение создано для решения глитча «Не беспокоить» на смартфонах Xiaomi/Redmi глобальных версий.\n\nНа главном экране приложения можем выбрать, какой режим будет установлен в смартфоне при активации системного «Не беспокоить»\n\nДля корректной работы приложения необходимо выдать нужные права, диалог откроется по клику на «Выдать права»</string>
+    <!-- modes-->
+    <string name="system">Как в системе</string>
+    <string name="chosen_contacts">Избранные контакты</string>
+    <string name="silent">Тихий режим</string>
+    <string name="vibro">Вибрация</string>
+</resources>
