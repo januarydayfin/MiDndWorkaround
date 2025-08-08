@@ -11,8 +11,8 @@ android {
         applicationId = "com.krayapp.xiaomidndfixer"
         minSdk = 29
         targetSdk = 35
-        versionCode = 101
-        versionName = "1.01"
+        versionCode = 102
+        versionName = "1.02"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
