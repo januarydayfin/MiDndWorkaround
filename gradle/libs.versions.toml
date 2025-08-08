@@ -9,10 +9,12 @@ appcompat = "1.7.0"
 material = "1.12.0"
 activity = "1.9.0"
 constraintlayout = "2.1.4"
+reviewKtx = "2.0.2"
 tedVersion = "3.4.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+review-ktx = { module = "com.google.android.play:review-ktx", version.ref = "reviewKtx" }
 tedpermission = { group = "io.github.ParkSangGwon", name = "tedpermission-normal", version.ref = "tedVersion" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }

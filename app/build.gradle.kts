@@ -40,7 +40,7 @@ android {
 }
 
 dependencies {
-
+    implementation(libs.review.ktx)
     implementation(libs.androidx.core.ktx)
     implementation(libs.tedpermission)
     implementation(libs.androidx.appcompat)

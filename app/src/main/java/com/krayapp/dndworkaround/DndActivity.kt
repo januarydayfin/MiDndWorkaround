@@ -8,9 +8,14 @@ import android.content.Intent
 import android.media.AudioManager
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.play.core.review.ReviewException
+import com.google.android.play.core.review.ReviewManagerFactory
+import com.google.android.play.core.review.model.ReviewErrorCode
+import com.google.android.play.core.review.testing.FakeReviewManager
 import com.krayapp.dndworkaround.databinding.MainActivityBinding
 
 
@@ -53,6 +58,7 @@ class DndActivity : AppCompatActivity() {
             openPermissionDialog()
         permissionDialog?.updatePermissionViews()
         restoreModeUI()
+        showInAppPreviewWindow()
     }
 
     private fun restoreModeUI() {
@@ -64,6 +70,17 @@ class DndActivity : AppCompatActivity() {
         }
     }
 
+    private fun showInAppPreviewWindow() {
+        val manager = ReviewManagerFactory.create(this)
+        val request = manager.requestReviewFlow()
+        request.addOnCompleteListener { task ->
+
+            if (task.isSuccessful) {
+                val reviewInfo = task.result
+                manager.launchReviewFlow(this,reviewInfo)
+            }
+        }
+    }
     private fun notificationRightsGranted(): Boolean {
         val manager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         return manager.isNotificationPolicyAccessGranted()
