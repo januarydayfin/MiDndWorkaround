@@ -74,10 +74,9 @@ class DndActivity : AppCompatActivity() {
         val manager = ReviewManagerFactory.create(this)
         val request = manager.requestReviewFlow()
         request.addOnCompleteListener { task ->
-
             if (task.isSuccessful) {
                 val reviewInfo = task.result
-                manager.launchReviewFlow(this,reviewInfo)
+                manager.launchReviewFlow(this, reviewInfo)
             }
         }
     }
@@ -125,8 +124,7 @@ class DndActivity : AppCompatActivity() {
                     ) //needs for
                     MODE_VIBRO -> audioManager.ringerMode = AudioManager.RINGER_MODE_VIBRATE
                 }
-            } else
-                Toast.makeText(this, R.string.apply_on_next_dnd, Toast.LENGTH_SHORT).show()
+            }
         } catch (_: Exception) {
             Toast.makeText(this, R.string.permission_error, Toast.LENGTH_SHORT).show()
         }
