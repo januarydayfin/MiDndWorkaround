@@ -5,7 +5,7 @@
     <background android:drawable="@drawable/app_icon_background_circle" />
     <foreground>
         <inset
-            android:drawable="@drawable/logo_svg"
-            android:inset="20%" />
+            android:drawable="@drawable/main_logo"
+            android:inset="15%" />
     </foreground>
 </adaptive-icon>
