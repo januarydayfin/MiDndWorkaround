@@ -11,8 +11,8 @@ android {
         applicationId = "com.krayapp.dndfixer"
         minSdk = 29
         targetSdk = 36
-        versionCode = 105
-        versionName = "1.05"
+        versionCode = 106
+        versionName = "1.06"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
