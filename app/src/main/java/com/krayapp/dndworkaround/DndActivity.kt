@@ -4,18 +4,12 @@ import android.app.NotificationManager
 import android.app.NotificationManager.INTERRUPTION_FILTER_ALARMS
 import android.app.NotificationManager.INTERRUPTION_FILTER_PRIORITY
 import android.content.Context
-import android.content.Intent
 import android.media.AudioManager
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.play.core.review.ReviewException
 import com.google.android.play.core.review.ReviewManagerFactory
-import com.google.android.play.core.review.model.ReviewErrorCode
-import com.google.android.play.core.review.testing.FakeReviewManager
 import com.krayapp.dndworkaround.databinding.MainActivityBinding
 
 
@@ -34,7 +28,6 @@ class DndActivity : AppCompatActivity() {
 
         vb.letPermission.setOnClickListener { openPermissionDialog() }
         vb.aboutApp.setOnClickListener { showAboutBottomsheet() }
-        vb.githubLink.setOnClickListener { openGitPage() }
         setupModeSelection()
 
     }
@@ -82,7 +75,7 @@ class DndActivity : AppCompatActivity() {
     }
     private fun notificationRightsGranted(): Boolean {
         val manager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-        return manager.isNotificationPolicyAccessGranted()
+        return manager.isNotificationPolicyAccessGranted
     }
 
     private fun setupModeSelection() {
@@ -96,14 +89,6 @@ class DndActivity : AppCompatActivity() {
         }
     }
 
-    private fun openGitPage() {
-        val browserIntent = Intent(
-            Intent.ACTION_VIEW,
-            Uri.parse("https://github.com/januarydayfin/MiDndWorkaround")
-        )
-        startActivity(browserIntent)
-    }
-
     private fun recordMode(mode: Int) {
         prefs?.recordMode = mode
         tryToApplyMode(mode)
@@ -111,7 +96,7 @@ class DndActivity : AppCompatActivity() {
 
     private fun tryToApplyMode(mode: Int) {
         try {
-            val dnd = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val dnd = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 
             val audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
             val notificationManager =

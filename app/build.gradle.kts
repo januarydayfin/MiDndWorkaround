@@ -5,14 +5,14 @@ plugins {
 
 android {
     namespace = "com.krayapp.dndworkaround"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.krayapp.xiaomidndfixer"
         minSdk = 29
-        targetSdk = 35
-        versionCode = 104
-        versionName = "1.04"
+        targetSdk = 36
+        versionCode = 105
+        versionName = "1.05"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
