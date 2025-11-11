@@ -8,7 +8,7 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.krayapp.xiaomidndfixer"
+        applicationId = "com.krayapp.dndfixer"
         minSdk = 29
         targetSdk = 36
         versionCode = 105
