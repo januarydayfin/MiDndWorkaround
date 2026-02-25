@@ -9,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:animateLayoutChanges="true"
-        android:background="@drawable/background_surface_rounded"
         android:orientation="vertical"
         android:padding="18dp">
 
@@ -36,7 +35,6 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="4dp"
-                android:src="@drawable/check_on"
                 android:visibility="gone" />
         </LinearLayout>
 

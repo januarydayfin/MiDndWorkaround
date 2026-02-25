@@ -1,46 +1,43 @@
 package com.krayapp.dndworkaround
 
 import android.content.Context
-import android.content.SharedPreferences
+import android.util.Log
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.intPreferencesKey
+import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.preferencesDataStore
+import com.krayapp.dndworkaround.components.DndMode
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
-class GlobalPrefs(context: Context) {
-
-    private val prefs = context.getSharedPreferences(PREFS_KEY, Context.MODE_PRIVATE)
-
-    var recordMode: Int
-        get() {
-            return getMode()
-        }
-        set(value) {
-            recordMode(value)
-        }
-
-    var useContacts: Boolean
-        get() {
-            return isUseContacts()
-        }
-        set(value) {
-            setContactsUse(value)
-        }
+private const val PREFS_KEY = "dndprefskey"
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = PREFS_KEY)
 
 
-    private fun recordMode(mode: Int) {
-        prefs.edit().putInt(MODE_KEY, mode).apply()
+private object PreferenceKeys {
+    val MODE_KEY = stringPreferencesKey("dndmodekey")
+    val BACKGROUND_WORK_TYPE = intPreferencesKey("backgroundworktypekey")
+}
+
+fun Context.recordMode(): Flow<String> = this.dataStore.data.map { preferences ->
+    preferences[PreferenceKeys.MODE_KEY] ?: DndMode.OFF.toString()
+}
+
+
+suspend fun Context.setRecordMode(mode: String) {
+    dataStore.edit { settings ->
+        settings[PreferenceKeys.MODE_KEY] = mode
     }
+}
 
-    private fun getMode(): Int = prefs.getInt(MODE_KEY, 0)
+fun Context.backgroundWorkType(): Flow<Int> = this.dataStore.data.map { preferences ->
+    preferences[PreferenceKeys.BACKGROUND_WORK_TYPE] ?: ECO
+}
 
-
-    private fun isUseContacts() : Boolean = prefs.getBoolean(CONTACT_KEY, false)
-
-    private fun setContactsUse(use: Boolean) {
-        prefs.edit().putBoolean(CONTACT_KEY, use).apply()
-    }
-
-    companion object {
-        private const val PREFS_KEY = "dndprefskey"
-
-        private const val MODE_KEY = "dndmodekey"
-        private const val CONTACT_KEY = "contactUseKey"
+suspend fun Context.setBackgroundWorkType(type: Int) {
+    dataStore.edit { settings ->
+        settings[PreferenceKeys.BACKGROUND_WORK_TYPE] = type
     }
 }

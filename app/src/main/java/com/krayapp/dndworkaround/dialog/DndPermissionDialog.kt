@@ -1,17 +1,16 @@
-package com.krayapp.dndworkaround
+package com.krayapp.dndworkaround.dialog
 
 import android.app.Dialog
 import android.content.ComponentName
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.provider.Settings
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.core.view.isVisible
+import com.krayapp.dndworkaround.R
 import com.krayapp.dndworkaround.databinding.PermissionDialogBinding
 
 class DndPermissionDialog(context: Context, private val dndGranted: () -> Boolean) :
@@ -25,7 +24,6 @@ class DndPermissionDialog(context: Context, private val dndGranted: () -> Boolea
 
         setContentView(vb!!.root)
 
-        window?.setBackgroundDrawable(context.getDrawable(R.drawable.background_surface_rounded))
 
         with(vb!!) {
             letAutostart.setOnClickListener { openAutostart() }

@@ -12,7 +12,7 @@
         android:name=".DndApp"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:theme="@style/Theme.Material3.Light.NoActionBar"
         tools:targetApi="31">
         <activity
             android:name=".DndActivity"
@@ -30,7 +30,7 @@
             android:name=".DndReceiver"
             android:directBootAware="true"
             android:enabled="true"
-            android:exported="false" >
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.app.action.INTERRUPTION_FILTER_CHANGED"/>
             </intent-filter>

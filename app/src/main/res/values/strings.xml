@@ -14,8 +14,11 @@
     <string name="permission_error">Seems like application has no permission, check permission</string>
     <string name="choose_mode">Choose mode, which will be used on system «DND» activated</string>
     <!-- modes-->
-    <string name="system">As in system</string>
     <string name="chosen_contacts">Favorites contacts</string>
-    <string name="silent">Full silent</string>
-    <string name="vibro">Vibro only</string>
+    <string name="silent">Silent</string>
+    <string name="vibro">Vibration</string>
+    <string name="off">Off</string>
+
+    <string name="dnd_mode">Dnd Mode</string>
+
 </resources>
