@@ -3,8 +3,8 @@ package com.krayapp.dndworkaround
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.krayapp.dndworkaround.data.DndRepository
-import com.krayapp.dndworkaround.mvi.Effects
-import com.krayapp.dndworkaround.mvi.Intent
+import com.krayapp.dndworkaround.mvi.MviEffects
+import com.krayapp.dndworkaround.mvi.MviIntent
 import com.krayapp.dndworkaround.mvi.UIState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -15,8 +15,8 @@ class MainViewModel(private val repository: DndRepository) : ViewModel() {
     private val _uiState = MutableStateFlow(UIState())
     val uiState: MutableStateFlow<UIState> = _uiState
 
-    private val _effects = MutableSharedFlow<Effects>()
-    val effects: MutableSharedFlow<Effects> = _effects
+    private val _effects = MutableSharedFlow<MviEffects>()
+    val effects: MutableSharedFlow<MviEffects> = _effects
 
     init {
         launchInIo {
@@ -28,24 +28,24 @@ class MainViewModel(private val repository: DndRepository) : ViewModel() {
             )
         }
     }
-    fun onIntent(intent: Intent) {
+    fun onIntent(mviIntent: MviIntent) {
         launchInIo {
-            when (intent) {
-                is Intent.ShowBackgroundInfo -> {
-                    _effects.emit(Effects.ShowBackgroundInfo)
+            when (mviIntent) {
+                is MviIntent.ShowBackgroundInfo -> {
+                    _effects.emit(MviEffects.ShowBackgroundInfo)
                 }
 
-                is Intent.SelectBackgroundMode -> {
-                    repository.saveBackgroundMode(intent.type)
-                    _uiState.emit(_uiState.value.copy(backgroundWorkType = intent.type))
+                is MviIntent.SelectBackgroundMode -> {
+                    repository.saveBackgroundMode(mviIntent.type)
+                    _uiState.emit(_uiState.value.copy(backgroundWorkType = mviIntent.type))
                 }
-                is Intent.SelectDndMode -> {
-                    repository.saveDndMode(intent.mode)
-                    _uiState.emit(_uiState.value.copy(dndMode = intent.mode))
+                is MviIntent.SelectDndMode -> {
+                    repository.saveDndMode(mviIntent.mode)
+                    _uiState.emit(_uiState.value.copy(dndMode = mviIntent.mode))
                 }
 
-                Intent.ShowPermissionDialog -> {
-                    _effects.emit(Effects.ShowPermissionDialog)
+                MviIntent.ShowPermissionDialog -> {
+                    _effects.emit(MviEffects.ShowPermissionDialog)
                 }
             }
         }

@@ -23,7 +23,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import com.krayapp.dndworkaround.MainViewModel
 import com.krayapp.dndworkaround.R
 import com.krayapp.dndworkaround.components.BackgroundExplanationBs
@@ -31,10 +30,11 @@ import com.krayapp.dndworkaround.components.BackgroundWorkSelection
 import com.krayapp.dndworkaround.components.DndModeSelection
 import com.krayapp.dndworkaround.components.PermissionDialog
 import com.krayapp.dndworkaround.components.Space
+import com.krayapp.dndworkaround.components.dndGranted
 import com.krayapp.dndworkaround.components.tryToApplyMode
 import com.krayapp.dndworkaround.mvi.BackgroundWorkType
-import com.krayapp.dndworkaround.mvi.Effects
-import com.krayapp.dndworkaround.mvi.Intent
+import com.krayapp.dndworkaround.mvi.MviEffects
+import com.krayapp.dndworkaround.mvi.MviIntent
 import com.krayapp.dndworkaround.theme.mSize
 import com.krayapp.dndworkaround.theme.xlSize
 import kotlinx.coroutines.flow.collectLatest
@@ -43,18 +43,18 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun MainScreen(enableForegroundService: () -> Unit, disableForegroundService: () -> Unit) {
     val viewModel: MainViewModel = koinViewModel()
+    val context = LocalContext.current
 
     val uiState = viewModel.uiState.collectAsState()
     var showExplanationBackgroundBs by remember { mutableStateOf(false) }
-    var showPermissionDialog by remember { mutableStateOf(false) }
+    var showPermissionDialog by remember { mutableStateOf(!context.dndGranted()) }
 
-    val context = LocalContext.current
 
     LaunchedEffect(Unit) {
         viewModel.effects.collectLatest {
             when (it) {
-                Effects.ShowBackgroundInfo -> showExplanationBackgroundBs = true
-                Effects.ShowPermissionDialog -> showPermissionDialog = true
+                MviEffects.ShowBackgroundInfo -> showExplanationBackgroundBs = true
+                MviEffects.ShowPermissionDialog -> showPermissionDialog = true
             }
         }
     }
@@ -85,7 +85,7 @@ fun MainScreen(enableForegroundService: () -> Unit, disableForegroundService: ()
             Space(xlSize)
 
             OutlinedButton(onClick = {
-                viewModel.onIntent(Intent.ShowPermissionDialog)
+                viewModel.onIntent(MviIntent.ShowPermissionDialog)
             }) {
                 Text(stringResource(R.string.let_permission))
             }
@@ -99,7 +99,7 @@ fun MainScreen(enableForegroundService: () -> Unit, disableForegroundService: ()
                 DndModeSelection(
                     initialState = uiState.value.dndMode,
                     onModeSelected = { mode ->
-                        viewModel.onIntent(Intent.SelectDndMode(mode))
+                        viewModel.onIntent(MviIntent.SelectDndMode(mode))
                         context.tryToApplyMode(mode)
                     })
 
@@ -107,14 +107,14 @@ fun MainScreen(enableForegroundService: () -> Unit, disableForegroundService: ()
                 BackgroundWorkSelection(
                     initialState = uiState.value.backgroundWorkType,
                     onModeSelected = { mode ->
-                        viewModel.onIntent(Intent.SelectBackgroundMode(mode))
+                        viewModel.onIntent(MviIntent.SelectBackgroundMode(mode))
                         when (mode) {
                             BackgroundWorkType.SERVICE -> enableForegroundService()
                             BackgroundWorkType.RECEIVER -> disableForegroundService()
                         }
                     },
                     openBackgroundInfo = {
-                        viewModel.onIntent(Intent.ShowBackgroundInfo)
+                        viewModel.onIntent(MviIntent.ShowBackgroundInfo)
                     })
 
             }

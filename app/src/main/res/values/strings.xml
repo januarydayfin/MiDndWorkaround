@@ -37,4 +37,5 @@
 
     <string name="service_title">Xiaomi DND</string>
     <string name="service_text">Watching for DND mode</string>
+    <string name="notification_not_granted">Notification permission not granted, service unavailable</string>
 </resources>

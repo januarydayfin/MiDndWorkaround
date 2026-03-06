@@ -3,6 +3,7 @@ package com.krayapp.dndworkaround
 import android.Manifest
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -11,14 +12,16 @@ import androidx.lifecycle.lifecycleScope
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.gun0912.tedpermission.coroutine.TedPermission
 import com.krayapp.dndworkaround.components.backgroundRememberedType
-import com.krayapp.dndworkaround.data.setBackgroundWorkType
 import com.krayapp.dndworkaround.mvi.BackgroundWorkType
+import com.krayapp.dndworkaround.mvi.MviIntent
 import com.krayapp.dndworkaround.screen.MainScreen
 import com.krayapp.dndworkaround.theme.AppTheme
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class DndActivity : AppCompatActivity() {
+    private val viewmodel: MainViewModel by viewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge(
@@ -71,8 +74,14 @@ class DndActivity : AppCompatActivity() {
 
             if (permissionResult.isGranted)
                 startForegroundService(Intent(this@DndActivity, DndService::class.java))
-            else
-                this@DndActivity.setBackgroundWorkType(BackgroundWorkType.RECEIVER.toString())
+            else {
+                viewmodel.onIntent(MviIntent.SelectBackgroundMode(BackgroundWorkType.RECEIVER))
+                Toast.makeText(
+                    this@DndActivity,
+                    R.string.notification_not_granted,
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
 
     }
