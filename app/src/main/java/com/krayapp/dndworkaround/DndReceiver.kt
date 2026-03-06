@@ -9,7 +9,13 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.media.AudioManager
-import com.krayapp.dndworkaround.components.DndMode
+import android.util.Log
+import com.krayapp.dndworkaround.DndService.Companion.CUSTOM_INTERRUPTION_ACTION
+import com.krayapp.dndworkaround.components.backgroundRememberedType
+import com.krayapp.dndworkaround.data.backgroundWorkType
+import com.krayapp.dndworkaround.data.dndMode
+import com.krayapp.dndworkaround.mvi.BackgroundWorkType
+import com.krayapp.dndworkaround.mvi.DndMode
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -23,20 +29,23 @@ class DndReceiver : BroadcastReceiver() {
     @SuppressLint("UnsafeProtectedBroadcastReceiver")
     override fun onReceive(context: Context?, intent: Intent?) {
         if (context == null) return
-
         val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        val pendingResult = goAsync()
 
         scope.launch {
-            try {
-                when (manager.currentInterruptionFilter) {
-                    INTERRUPTION_FILTER_PRIORITY -> shutUp(context)
-                    INTERRUPTION_FILTER_ALL -> unmuteNotification(context)
-                    else -> {}
+            val isServiceEvent = context.backgroundRememberedType() == BackgroundWorkType.SERVICE
+                    && intent?.action == CUSTOM_INTERRUPTION_ACTION
+
+            val isBroadcastEvent = context.backgroundRememberedType() == BackgroundWorkType.RECEIVER
+                    && intent?.action == "android.app.action.INTERRUPTION_FILTER_CHANGED"
+
+            if (isServiceEvent || isBroadcastEvent)
+                runCatching {
+                    when (manager.currentInterruptionFilter) {
+                        INTERRUPTION_FILTER_PRIORITY -> shutUp(context)
+                        INTERRUPTION_FILTER_ALL -> unmuteNotification(context)
+                        else -> {}
+                    }
                 }
-            } finally {
-                pendingResult.finish()
-            }
         }
     }
 
@@ -45,11 +54,11 @@ class DndReceiver : BroadcastReceiver() {
         val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
         val notificationManager =
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        val mode = DndMode.valueOf(context.recordMode().first())
+        val mode = DndMode.valueOf(context.dndMode().first())
 
         when (mode) {
             DndMode.OFF -> audioManager.ringerMode = AudioManager.RINGER_MODE_NORMAL
-            DndMode.SILENT -> notificationManager.setInterruptionFilter(INTERRUPTION_FILTER_ALARMS) //needs for
+            DndMode.SILENT -> notificationManager.setInterruptionFilter(INTERRUPTION_FILTER_ALARMS)
             DndMode.VIBRO -> audioManager.ringerMode = AudioManager.RINGER_MODE_VIBRATE
         }
 

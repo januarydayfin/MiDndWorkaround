@@ -5,7 +5,7 @@
     <string name="give_battery">Give rights to energy saving</string>
     <string name="enable_autostart">Check autostart</string>
     <string name="no_xiaomi">This is not Xiaomi</string>
-    <string name="let_permission">Let permission</string>
+    <string name="let_permission">Permission settings</string>
     <string name="about">About App</string>
     <string name="close">Close</string>
     <string name="gotit">Got it</string>
@@ -21,4 +21,20 @@
 
     <string name="dnd_mode">Dnd Mode</string>
 
+    <string name="background_type">Background work type</string>
+    <string name="service">Service</string>
+    <string name="receiver">Receiver</string>
+
+    <string name="receiver_explanation">
+        This mode uses a broadcast receiver to catch DND events, uses less battery power, and doesn\'t display notifications. It may not work in some cases, such as after the smartphone has been idle for a long time overnight.
+    </string>
+
+    <string name="service_explanation">This mode runs a foreground service with a persistent
+        notification. It is the most reliable way to ensure the app works instantly, even after the
+        phone has been idle for a long time. Recommended for Xiaomi/Redmi users if the "Receiver"
+        mode fails.
+    </string>
+
+    <string name="service_title">Xiaomi DND</string>
+    <string name="service_text">Watching for DND mode</string>
 </resources>
